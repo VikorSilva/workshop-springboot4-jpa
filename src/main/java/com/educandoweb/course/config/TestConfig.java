@@ -3,6 +3,7 @@ package com.educandoweb.course.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import org.hibernate.dialect.function.array.ArrayToStringFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -61,6 +62,16 @@ public class TestConfig implements CommandLineRunner {
 		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 		
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		p1.getCategories().add(car2);
+		p2.getCategories().addAll(Arrays.asList(car1, car3));
+		p3.getCategories().add(car3);
+		p4.getCategories().add(car3);
+		p5.getCategories().add(car2);
+		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		
 		
 	}
 	
